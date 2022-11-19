@@ -1,0 +1,3 @@
+const isValidElement = () => {};
+
+export { isValidElement };
