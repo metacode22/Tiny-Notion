@@ -1,6 +1,6 @@
 import { API_ERROR_MESSAGES } from '../constants/errorMessages.js';
 
-const BASE_URL = 'https://kdt-frontend.programmers.co.kr/documents';
+const BASE_URL = process.env.API_END_POINT;
 
 const request = async ({ url = '', options = {} }) => {
   try {
