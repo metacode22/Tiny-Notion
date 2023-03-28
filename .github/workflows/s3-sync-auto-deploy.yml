@@ -28,4 +28,4 @@ jobs:
           # region은 서울
           AWS_REGION: 'ap-northeast-2'
           # 소스 폴더는 build이다.
-          SOURCE_DIR: 'src'
+          SOURCE_DIR: 'src/**'
