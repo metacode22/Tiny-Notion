@@ -13,7 +13,7 @@ export default function RootDocumentAddButton({
   this.render = () => {
     $div.innerHTML = `
 			<img data-action='add' src='/src/assets/images/addButton.svg'>
-			<div>새 문서 만들기</div>
+			<div>새 문서 만들기 s3 Test</div>
 		`;
   };
 

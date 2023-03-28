@@ -1,0 +1,31 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - run: npm install
+      - run: npm run build
+      - name: deploy to s3 bucket
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --delete
+        env:
+          # 밑의 3개는 환경 변수로 노출되지 않아야 하는 것들이다.
+          # 이는 Github Repository의 Settings - Secrets - Actions에서 설정한다.
+          # S3 버킷 이름
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          # aws에도 내가 접근한다는 것을 알려야 한다. 아이디와 비밀번호라고 보면 된다.
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          # 밑의 2개는 노출되어도 상관없다.
+          # region은 서울
+          AWS_REGION: 'ap-northeast-2'
+          # 소스 폴더는 build이다.
+          SOURCE_DIR: 'build'
