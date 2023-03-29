@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      # - run: npm install
-      # - run: npm run build
+      - run: npm install
+      - run: npm run build
       - name: deploy to s3 bucket
         uses: jakejarvis/s3-sync-action@master
         with:
@@ -28,15 +28,4 @@ jobs:
           # region은 서울
           AWS_REGION: 'ap-northeast-2'
           # 소스 폴더는 build이다.
-          SOURCE_DIR:
-            [
-              src,
-              src/assets/images,
-              src/components/Post,
-              src/components/shared,
-              src/components/Sidebar,
-              src/styles,
-              src/utils,
-              src/utils/api,
-              src/utils/constants,
-            ]
+          SOURCE_DIR: 'build'
